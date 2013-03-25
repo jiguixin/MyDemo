@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>链接到ActionLinkAction @Html.ActionLink("我要打开本Controller 中的ActionLinkExercise Action","ActionLinkExercise")</p>
+
+@Html.ActionLink("打开有参考的Action", "ActionLinkExercise", new { UserName="jim"})
+
+@Html.ActionLink("打开HomeController中的Contact Action","Contact","Home")
