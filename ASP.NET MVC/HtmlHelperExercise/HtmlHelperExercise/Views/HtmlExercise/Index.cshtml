@@ -14,3 +14,11 @@
 <br/>
 <p>下面生TextBox</p>
 @Html.TextBox("txtName","jiguixin")
+@Html.TextBox("txtValue","有样式",new {id="txtId",maxlength="20",size="15", style="width:300px;"})
+ 
+<p>下面是生成TextArea</p>
+@Html.TextArea("txtArea","this is my Text",4,3,new{id="txtAreaId"} )
+
+<p>下面是生成CheckBox</p>
+@Html.CheckBox("chkYes", true) 对 --- @Html.CheckBox("chkNo",false) 错
+
