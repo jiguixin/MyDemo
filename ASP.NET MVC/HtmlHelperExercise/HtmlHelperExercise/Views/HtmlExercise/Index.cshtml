@@ -9,3 +9,8 @@
 @Html.ActionLink("打开有参考的Action", "ActionLinkExercise", new { UserName="jim"})
 
 @Html.ActionLink("打开HomeController中的Contact Action","Contact","Home")
+
+@Html.ActionLink("生成一个链接,可以自定义ID属性","ActionLinkExercise",new {UserName="jiguixin"},new {id="idTest",name="nameTest"})
+<br/>
+<p>下面生TextBox</p>
+@Html.TextBox("txtName","jiguixin")
