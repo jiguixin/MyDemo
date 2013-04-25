@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
 using Top.Api;
+using Top.Api.Domain;
 using Top.Api.Request;
 using Top.Api.Response;
 using Top.Api.Util;
@@ -16,9 +17,24 @@ using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace GetTbData
 {
+    public class Product
+    {
+        public string Name;
+        public long? Num;
+        public string Type;
+        public string StuffStatus;
+        public string Title;
+        public string Desc;
+      
+
+
+    }
+
     public partial class FrmMain : Form
     {
         private TopContext context;
+
+        private List<SellerCat> sellerCats;
 
         public FrmMain()
         {
@@ -36,34 +52,10 @@ namespace GetTbData
             doc.Save("file.htm");*/
 
             PublishProduct();
-
-
-
-           /* //沙箱环境接入地址：http://gw.api.tbsandbox.com/router/rest
-            //正式环境接入地址：http://gw.api.taobao.com/router/rest 
-            string TopUrl = "http://gw.api.taobao.com/router/rest";
-            TopXmlRestClient client = new TopXmlRestClient(TopUrl, Txt_appkey.Text.Trim(), Txt_appsecret.Text.Trim());
-            ItemsGetRequest ieq = new ItemsGetRequest();
-            ieq.Fields = "detail_url,num_iid,title,price,nick,pic_url,num,volume";//需返回的商品结构字段列表
-            ieq.Cid = 1101;//这是类目ID，可以通过API查到的。
-            ieq.PageSize = 10;//每页返回数量
-            //这个API有很多参数，大家可以参考API文档。
-            PageList<Item> result = client.ItemsGet(ieq);
-            List<Item> items = result.Content;
-            string table = "<table id=Table1>";
-            foreach (Item item in items)
-            {
-                table += "<tr>";
-                table += "<td width=250><img src=" + item.PicUrl + " width=200 height=200 /></td>";
-                table += "<td>标题：" + item.Title + " <br/>";
-                table += "价格：" + item.Price + " 卖家： " + item.Nick + "<br/>";
-                table += "商品数量：" + item.Num + " 30天销量：" + item.Volume + "</td>";
-                table += "</tr>";
-            }
-            table += "</table>";
-            Literal1.Text = table;
-            */
+             
         }
+
+
 
         private void PublishProduct()
         { 
@@ -77,26 +69,41 @@ namespace GetTbData
             context = TopUtils.GetTopContext(authCode);
 
             ITopClient client = new DefaultTopClient("http://gw.api.taobao.com/router/rest", "21479233", "98dd6f00daf3f94322ec1a4ff72370b7");
+            #region 获取店铺类目
+
+            SellercatsListGetRequest reqCats = new SellercatsListGetRequest();
+            reqCats.Nick = context.UserNick;
+            SellercatsListGetResponse responseCats = client.Execute(reqCats);
+            sellerCats = responseCats.SellerCats;
+            
+              
+
+            // var cats = responseCats.SellerCats.FirstOrDefault(f => f.Name == "");
+            
+
+            //714827841
+            #endregion
+
             ItemAddRequest req = new ItemAddRequest();
             req.Num = 30L;
-            req.Price = "200.07";
+            req.Price = "2000.07";
             req.Type = "fixed";
             req.StuffStatus = "new";
-            req.Title = "Nokia N97全新行货";
+            req.Title = "美邦男装";
             req.Desc = "这是一个好商品";
             req.LocationState = "浙江";
             req.LocationCity = "杭州";
-            req.ApproveStatus = "onsale";
-            req.Cid = 1512L;
-            req.Props = "20000:33564;21514:38489";
+            //req.ApproveStatus = "onsale";
+            req.Cid = 50000436;
+           // req.Props = "20000:33564;21514:38489";
             req.FreightPayer = "buyer";
-            req.ValidThru = 7L;
-            req.HasInvoice = true;
-            req.HasWarranty = true;
-            req.HasShowcase = true;
-            req.SellerCids = "1101,1102,1103";
+            //req.ValidThru = 7L;
+            req.HasInvoice = false;
+            req.HasWarranty = false;
+            req.HasShowcase = false;
+            req.SellerCids = GetCatsList("T恤 - 长袖T恤;T恤 - 短袖T恤;T恤 - 圆领T恤", "Metersbonwe - 女装");
             req.HasDiscount = true;
-            req.PostFee = "5.07";
+            req.PostFee = "15.07";
             req.ExpressFee = "15.07";
             req.EmsFee = "25.07";
             DateTime dateTime = DateTime.Parse("2000-01-01 00:00:00");
@@ -107,7 +114,7 @@ namespace GetTbData
             req.PostageId = 775752L;
             req.AuctionPoint = 5L;
             req.PropertyAlias = "pid:vid:别名;pid1:vid1:别名1";
-            req.InputPids = "pid1,pid2,pid3";
+            req.InputPids = "20000";
             req.SkuProperties = "pid:vid;pid:vid";
             req.SkuQuantities = "2,3,4";
             req.SkuPrices = "200.07";
@@ -117,7 +124,7 @@ namespace GetTbData
             req.ProductId = 123456789L;
             req.PicPath = "i7/T1rfxpXcVhXXXH9QcZ_033150.jpg";
             req.AutoFill = "time_card";
-            req.InputStr = "耐克;耐克系列;科比系列;科比系列;2K5,Nike乔丹鞋;乔丹系列;乔丹鞋系列;乔丹鞋系列;";
+            req.InputStr = "耐克;";
             req.IsTaobao = true;
             req.IsEx = true;
             req.Is3D = true;
@@ -163,6 +170,48 @@ namespace GetTbData
             req.PaimaiInfoValidMinute = 22L;
             ItemAddResponse response = client.Execute(req, context.SessionKey);
         }
+
+        private string GetCatsList(string catsContent,string parentName)
+        {
+            var cats = catsContent.Split(';');
+
+            //1, 获取该parentName对应的Cid
+            var parentCid = sellerCats.FirstOrDefault(s=>s.Name == parentName);
+
+            if (parentCid == null)
+                return null;
+
+            //2，根据父CID和各类别名查找相应的子类别用逗号分开
+            //string result = null;
+            //foreach (var cat in cats)
+            //{
+            //    var sellerCat = sellerCats.FirstOrDefault(s => s.ParentCid == parentCid.Cid && s.Name == cat);
+            //    if (sellerCat != null)
+            //    {
+            //        if (!string.IsNullOrEmpty(result))
+            //            result += "," + sellerCat.Cid;
+            //        else
+            //            result += sellerCat.Cid;
+            //    }
+               
+            //}
+            //return result;
+            //等同于下面表达式
+            string result = null;
+            foreach (var sellerCat in cats.Select(cat => sellerCats.FirstOrDefault(s => s.ParentCid == parentCid.Cid && s.Name == cat)).Where(sellerCat => sellerCat != null))
+            {
+                if (!string.IsNullOrEmpty(result))
+                    result += "," + sellerCat.Cid;
+                else
+                    result += sellerCat.Cid;
+            }
+            return result;
+
+            //等同于下面
+
+
+        }
+
 
         private string GetSessionKey()
         {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
+using Top.Api.Util;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 
@@ -50,7 +51,7 @@ namespace GetTbData
                 }
 
                 if (!string.IsNullOrEmpty(AuthrizeCode) && AuthrizeCode.IndexOf("TOP-") >= 0)
-                {
+                { 
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

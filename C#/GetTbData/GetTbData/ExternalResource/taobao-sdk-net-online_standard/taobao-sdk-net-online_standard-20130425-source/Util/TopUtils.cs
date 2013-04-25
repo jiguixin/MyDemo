@@ -136,7 +136,9 @@ namespace Top.Api.Util
         {
             string url = TOP_AUTH_URL + authCode;
             WebUtils wu = new WebUtils();
-            string rsp = wu.DoGet(url, null);
+//            string rsp = wu.DoGet(url, null);
+            string rsp = wu.DoUrl(url, null);
+            
             if (string.IsNullOrEmpty(rsp))
             {
                 return null;

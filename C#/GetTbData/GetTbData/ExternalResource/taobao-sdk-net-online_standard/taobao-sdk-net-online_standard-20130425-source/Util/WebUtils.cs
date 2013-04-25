@@ -81,6 +81,34 @@ namespace Top.Api.Util
         }
 
         /// <summary>
+        /// 执行HTTP GET请求得到返回的URL地址。
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns>HTTP响应</returns>
+        public string DoUrl(string url, IDictionary<string, string> parameters)
+        {
+            if (parameters != null && parameters.Count > 0)
+            {
+                if (url.Contains("?"))
+                {
+                    url = url + "&" + BuildQuery(parameters);
+                }
+                else
+                {
+                    url = url + "?" + BuildQuery(parameters);
+                }
+            }
+
+            HttpWebRequest req = GetWebRequest(url, "GET");
+            req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
+
+            HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+
+            return rsp.ResponseUri.Query.Substring(1);
+        }
+
+        /// <summary>
         /// 执行带文件上传的HTTP POST请求。
         /// </summary>
         /// <param name="url">请求地址</param>
@@ -182,6 +210,9 @@ namespace Top.Api.Util
                 // 以字符流的方式读取HTTP响应
                 stream = rsp.GetResponseStream();
                 reader = new StreamReader(stream, encoding);
+
+                //return rsp.ResponseUri.Query.Substring(1).ToString();
+                //因为没有网站，所以只能取URL中的值
                 return reader.ReadToEnd();
             }
             finally
