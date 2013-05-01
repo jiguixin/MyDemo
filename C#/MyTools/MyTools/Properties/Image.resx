@@ -196,14 +196,14 @@
   <data name="Film_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Film_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FilterSample" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icon\FilterSample.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Filter_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Filter_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Filter_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Filter_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FilterSample" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icon\FilterSample.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Folder_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Folder_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,12 +265,6 @@
   <data name="Print_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Print_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Remove_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icon\Remove_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Remove_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icon\Remove_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="RemoveAlbum_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\RemoveAlbum_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -288,6 +282,12 @@
   </data>
   <data name="RemoveFromAlbum_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\RemoveFromAlbum_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Remove_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icon\Remove_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Remove_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icon\Remove_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Save_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -316,17 +316,17 @@
   <data name="Undo_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Undo_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Unmark_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icon\Unmark_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Unmark_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icon\Unmark_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UnmarkAll_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\UnmarkAll_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UnmarkAll_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\UnmarkAll_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Unmark_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icon\Unmark_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Unmark_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icon\Unmark_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Upload_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icon\Upload_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
