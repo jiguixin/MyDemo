@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,6 +70,7 @@ namespace GetTbData
             context = TopUtils.GetTopContext(authCode);
 
             ITopClient client = new DefaultTopClient("http://gw.api.taobao.com/router/rest", "21479233", "98dd6f00daf3f94322ec1a4ff72370b7");
+
             #region 获取店铺类目
 
             SellercatsListGetRequest reqCats = new SellercatsListGetRequest();
@@ -111,8 +113,8 @@ namespace GetTbData
             req.Increment = "2.50";
             FileItem fItem = new FileItem(@"C:\Users\Administrator\Desktop\a.png");
             req.Image = fItem;
-            req.PostageId = 775752L;
-            req.AuctionPoint = 5L;
+           // req.PostageId = 775752L;
+            //req.AuctionPoint = 5L;
             req.PropertyAlias = "pid:vid:别名;pid1:vid1:别名1";
             req.InputPids = "20000";
             req.SkuProperties = "pid:vid;pid:vid";
@@ -171,15 +173,38 @@ namespace GetTbData
             ItemAddResponse response = client.Execute(req, context.SessionKey);
         }
 
-        private string GetCatsList(string catsContent,string parentName)
+        private string GetCatsList(string childSellCatsContent,string parentSellerName)
         {
-            var cats = catsContent.Split(';');
+            SellerCat parentSellerCat = null;
+             
+            if (string.IsNullOrEmpty(parentSellerName))
+                return null;
+
+            // 获取父节点
+            parentSellerCat = sellerCats.FirstOrDefault(s => s.Name == parentSellerName);
+
+            if (parentSellerCat == null)
+                return null;
+
+            //如果用户数据有误，将子节点放到了父结点中，如果发现是子节点，就直接返回CID
+            if (parentSellerCat.ParentCid != 0)
+                return parentSellerCat.Cid.ToString(CultureInfo.InvariantCulture);
+             
+            //如果子结点为空，直接返回父亲结点CID
+            if (string.IsNullOrEmpty(childSellCatsContent))
+            { 
+                return parentSellerCat.Cid.ToString(CultureInfo.InvariantCulture);
+            }
+
+            var cats = childSellCatsContent.Split(';');
 
             //1, 获取该parentName对应的Cid
-            var parentCid = sellerCats.FirstOrDefault(s=>s.Name == parentName);
+//            var parentCid = sellerCats.FirstOrDefault(s=>s.Name == parentSellerName);
+//
+//            if (parentCid == null)
+//                return null;
 
-            if (parentCid == null)
-                return null;
+
 
             //2，根据父CID和各类别名查找相应的子类别用逗号分开
             //string result = null;
@@ -198,7 +223,7 @@ namespace GetTbData
             //return result;
             //等同于下面表达式
             string result = null;
-            foreach (var sellerCat in cats.Select(cat => sellerCats.FirstOrDefault(s => s.ParentCid == parentCid.Cid && s.Name == cat)).Where(sellerCat => sellerCat != null))
+            foreach (var sellerCat in cats.Select(cat => sellerCats.FirstOrDefault(s => s.ParentCid == parentSellerCat.Cid && s.Name == cat)).Where(sellerCat => sellerCat != null))
             {
                 if (!string.IsNullOrEmpty(result))
                     result += "," + sellerCat.Cid;
