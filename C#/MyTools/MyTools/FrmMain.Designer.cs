@@ -28,119 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainRibbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.biAuthenticate = new DevExpress.XtraBars.BarButtonItem();
-            this.TaoBaoPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.taoBaoPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.publishGoodsPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.analysisPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.navBar = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            ((System.ComponentModel.ISupportInitialize)(this.mainRibbon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
-            // mainRibbon
+            // ribbon
             // 
-            this.mainRibbon.ExpandCollapseItem.Id = 0;
-            this.mainRibbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.mainRibbon.ExpandCollapseItem,
-            this.biAuthenticate});
-            this.mainRibbon.Location = new System.Drawing.Point(0, 0);
-            this.mainRibbon.MaxItemId = 2;
-            this.mainRibbon.Name = "mainRibbon";
-            this.mainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.TaoBaoPage});
-            this.mainRibbon.Size = new System.Drawing.Size(961, 147);
-            this.mainRibbon.StatusBar = this.ribbonStatusBar;
+            this.ribbon.ExpandCollapseItem.Id = 0;
+            this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbon.ExpandCollapseItem});
+            this.ribbon.Location = new System.Drawing.Point(0, 0);
+            this.ribbon.MaxItemId = 1;
+            this.ribbon.Name = "ribbon";
+            this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+            this.ribbon.Size = new System.Drawing.Size(976, 147);
+            this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
-            // biAuthenticate
+            // ribbonPage1
             // 
-            this.biAuthenticate.Caption = "Authenticate";
-            this.biAuthenticate.Glyph = global::MyTools.Properties.Resources.Mark_32x32;
-            this.biAuthenticate.Id = 1;
-            this.biAuthenticate.LargeGlyph = global::MyTools.Properties.Resources.Mark_32x32;
-            this.biAuthenticate.Name = "biAuthenticate";
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "ribbonPage1";
             // 
-            // TaoBaoPage
+            // ribbonPageGroup1
             // 
-            this.TaoBaoPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.taoBaoPageGroup,
-            this.publishGoodsPageGroup,
-            this.analysisPageGroup});
-            this.TaoBaoPage.Name = "TaoBaoPage";
-            this.TaoBaoPage.Text = "TaoBaoPage";
-            // 
-            // taoBaoPageGroup
-            // 
-            this.taoBaoPageGroup.ItemLinks.Add(this.biAuthenticate);
-            this.taoBaoPageGroup.Name = "taoBaoPageGroup";
-            this.taoBaoPageGroup.Text = "general";
-            // 
-            // publishGoodsPageGroup
-            // 
-            this.publishGoodsPageGroup.Name = "publishGoodsPageGroup";
-            this.publishGoodsPageGroup.Text = "publish goods";
-            // 
-            // analysisPageGroup
-            // 
-            this.analysisPageGroup.Name = "analysisPageGroup";
-            this.analysisPageGroup.Text = "analysis";
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 501);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 508);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.mainRibbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(961, 31);
-            // 
-            // navBar
-            // 
-            this.navBar.ActiveGroup = null;
-            this.navBar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.navBar.Location = new System.Drawing.Point(0, 147);
-            this.navBar.Name = "navBar";
-            this.navBar.OptionsNavPane.ExpandedWidth = 140;
-            this.navBar.Size = new System.Drawing.Size(140, 354);
-            this.navBar.TabIndex = 2;
-            this.navBar.Text = "navBarControl1";
-            // 
-            // navBarGroup1
-            // 
-            this.navBarGroup1.Caption = "navBarGroup1";
-            this.navBarGroup1.Expanded = true;
-            this.navBarGroup1.Name = "navBarGroup1";
+            this.ribbonStatusBar.Ribbon = this.ribbon;
+            this.ribbonStatusBar.Size = new System.Drawing.Size(976, 31);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 532);
-            this.Controls.Add(this.navBar);
+            this.ClientSize = new System.Drawing.Size(976, 539);
             this.Controls.Add(this.ribbonStatusBar);
-            this.Controls.Add(this.mainRibbon);
-            this.IsMdiContainer = true;
+            this.Controls.Add(this.ribbon);
             this.Name = "FrmMain";
-            this.Ribbon = this.mainRibbon;
+            this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "MyTools";
-            ((System.ComponentModel.ISupportInitialize)(this.mainRibbon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navBar)).EndInit();
+            this.Text = "FrmMain";
+            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraBars.Ribbon.RibbonControl mainRibbon;
-        private DevExpress.XtraBars.Ribbon.RibbonPage TaoBaoPage;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup publishGoodsPageGroup;
+        private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
-        private DevExpress.XtraNavBar.NavBarControl navBar;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup analysisPageGroup;
-        private DevExpress.XtraBars.BarButtonItem biAuthenticate;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup taoBaoPageGroup;
     }
 }
