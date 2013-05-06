@@ -302,7 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="globe_download.ico" />
-    <Content Include="更新说明.txt" />
+    <Content Include="updae-list.txt" />
     <None Include="Resources\FSLib.App.Utilities.exe" />
   </ItemGroup>
   <ItemGroup>
