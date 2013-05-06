@@ -7,5 +7,6 @@ namespace MyTools.TaoBao.UnitTest
 {
     public class Class1
     {
+        //sdfsdf
     }
 }
