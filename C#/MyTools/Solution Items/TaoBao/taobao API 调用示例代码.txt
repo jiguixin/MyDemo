@@ -4,6 +4,14 @@ SellercatsListGetRequest req=new SellercatsListGetRequest();
 req.Nick = "mbgou";
 SellercatsListGetResponse response = client.Execute(req);
 
+//----------------------------------------------------------
+//类目API taobao.itemcats.get 获取后台供卖家发布商品的标准商品类目
+ITopClient client = new DefaultTopClient(url, appkey, appsecret);
+ItemcatsGetRequest req=new ItemcatsGetRequest();
+req.Fields = "cid,parent_cid,name,is_parent";
+req.ParentCid = 50011999L;
+req.Cids = "18957,19562,";
+ItemcatsGetResponse response = client.Execute(req);
 
 //----------------------------------------------------------
 //类目API taobao.itemprops.get 获取标准商品类目属性（包括：货号、品牌、衣长等）

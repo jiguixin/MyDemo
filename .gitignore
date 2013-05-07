@@ -164,6 +164,6 @@ pip-log.txt
 .DS_Store
 
 # my ignored
-Assemblies/
+/Assemblies/
 
-C#\MyTools\Assemblies*/
+C#/MyTools/Assemblies*/

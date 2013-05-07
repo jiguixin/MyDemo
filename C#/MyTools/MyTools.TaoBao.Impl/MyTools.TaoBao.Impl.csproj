@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Authorization\DefaultAuthorization.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ItemCats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShopApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\GetTbData\GetTbData\ExternalResource\taobao-sdk-net-online_standard\taobao-sdk-net-online_standard-20130425-source\TopSdk.csproj">

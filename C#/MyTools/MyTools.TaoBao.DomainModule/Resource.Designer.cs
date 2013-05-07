@@ -70,11 +70,11 @@ namespace MyTools.TaoBao.DomainModule {
         }
         
         /// <summary>
-        ///   查找类似 在 [{0}] 方法中传入参考 [{1}] 不合法 的本地化字符串。
+        ///   查找类似 在 [{0}] 方法中传入参数 [{1}] 不能为空 的本地化字符串。
         /// </summary>
-        public static string ExceptionTemplate_MethedParameterIllegal {
+        public static string ExceptionTemplate_MethedParameterIsNullorEmpty {
             get {
-                return ResourceManager.GetString("ExceptionTemplate_MethedParameterIllegal", resourceCulture);
+                return ResourceManager.GetString("ExceptionTemplate_MethedParameterIsNullorEmpty", resourceCulture);
             }
         }
         

@@ -124,8 +124,8 @@
     <value>/html/body/div[@class='content']/div[2]/div[@class='copy-code']/input</value>
     <comment>用于该XPATH获取在淘宝认证界面的AuthorizedCode</comment>
   </data>
-  <data name="ExceptionTemplate_MethedParameterIllegal" xml:space="preserve">
-    <value>在 [{0}] 方法中传入参考 [{1}] 不合法</value>
+  <data name="ExceptionTemplate_MethedParameterIsNullorEmpty" xml:space="preserve">
+    <value>在 [{0}] 方法中传入参数 [{1}] 不能为空</value>
     <comment>异常模版，方法接收的参数不合法</comment>
   </data>
 </root>
