@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Image.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -57,8 +57,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmMain.resx">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <Compile Include="TaoBao\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaoBao\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Image.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,6 +80,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TaoBao\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,7 +94,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="TaoBao\" />
+    <ProjectReference Include="..\..\GetTbData\GetTbData\ExternalResource\taobao-sdk-net-online_standard\taobao-sdk-net-online_standard-20130425-source\TopSdk.csproj">
+      <Project>{9C11CAE5-5188-4E71-825B-68FC3135728A}</Project>
+      <Name>TopSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyTools.TaoBao.DomainModule\MyTools.TaoBao.DomainModule.csproj">
+      <Project>{cfda5730-0420-430f-bf57-312b716afa17}</Project>
+      <Name>MyTools.TaoBao.DomainModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyTools.TaoBao.Impl\MyTools.TaoBao.Impl.csproj">
+      <Project>{0a7006af-066c-43e0-bb32-e17313eb6bb2}</Project>
+      <Name>MyTools.TaoBao.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyTools.TaoBao.Interface\MyTools.TaoBao.Interface.csproj">
+      <Project>{67f099c3-f743-4e52-b0cc-2c06a88d1a78}</Project>
+      <Name>MyTools.TaoBao.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon\AddFile_16x16.png" />

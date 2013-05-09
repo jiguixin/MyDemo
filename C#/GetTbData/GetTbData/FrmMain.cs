@@ -52,8 +52,7 @@ namespace GetTbData
             }
             doc.Save("file.htm");*/
 
-            PublishProduct();
-             
+            PublishProduct(); 
         }
 
 
@@ -69,6 +68,7 @@ namespace GetTbData
 
             context = TopUtils.GetTopContext(authCode);
 
+            
             ITopClient client = new DefaultTopClient("http://gw.api.taobao.com/router/rest", "21479233", "98dd6f00daf3f94322ec1a4ff72370b7");
 
             #region 获取店铺类目

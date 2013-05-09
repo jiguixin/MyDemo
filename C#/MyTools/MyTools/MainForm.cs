@@ -2,22 +2,34 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MyTools.TaoBao;
+using MyTools.TaoBao.Impl;
+using MyTools.TaoBao.Impl.Authorization;
+using MyTools.TaoBao.Interface;
+using MyTools.TaoBao.Interface.Authorization;
+using Top.Api;
+using Top.Api.Util;
+using MyTools.TaoBao.DomainModule;
+
 
 namespace MyTools
 {
-    public partial class FrmMain : Form
+    public partial class MainForm : Form
     {
         private int childFormNumber = 0;
 
-        public FrmMain()
+        public MainForm()
         {
             InitializeComponent();
         }
 
+        #region MyRegion
+         
         private void ShowNewForm(object sender, EventArgs e)
         {
             Form childForm = new Form();
@@ -101,6 +113,54 @@ namespace MyTools
             {
                 childForm.Close();
             }
+        }
+         
+        #endregion
+
+        #region var
+
+        //App Key与App Secret在"应用证书"得到
+        private ITopClient client;
+
+        private TopContext context;
+
+        private IShopApi shopApi;
+
+        private string authorizeUrl;
+
+        private string appKey = "21479233";
+
+        private string appSecret = "98dd6f00daf3f94322ec1a4ff72370b7";
+
+        #endregion
+
+        private void btnAuthorization_Click(object sender, EventArgs e)
+        {
+            FrmLogin login = new FrmLogin(authorizeUrl);
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                IAuthorization auth = new DefaultAuthorization();
+                context = auth.Authorized(login.resultHtml);
+            }
+        }
+
+        private void btnGetCats_Click(object sender, EventArgs e)
+        {
+            var sellCatsList = shopApi.GetSellercatsList(context.UserNick);
+
+            Debug.WriteLine(sellCatsList.Count);
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            client = new DefaultTopClient(Resource.SysConfig_RealTaobaoServerUrl,appKey , appSecret);
+
+            authorizeUrl = string.Format(Resource.SysConfig_AuthorizeUrl, appKey);
+
+            shopApi = new ShopApi(client);
+
+           
         }
     }
 }

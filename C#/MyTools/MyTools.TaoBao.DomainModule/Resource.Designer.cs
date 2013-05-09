@@ -86,5 +86,23 @@ namespace MyTools.TaoBao.DomainModule {
                 return ResourceManager.GetString("SysConfig_AuthorizedCodeXPath", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 http://open.taobao.com/authorize/?appkey={0} 的本地化字符串。
+        /// </summary>
+        public static string SysConfig_AuthorizeUrl {
+            get {
+                return ResourceManager.GetString("SysConfig_AuthorizeUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://gw.api.taobao.com/router/rest 的本地化字符串。
+        /// </summary>
+        public static string SysConfig_RealTaobaoServerUrl {
+            get {
+                return ResourceManager.GetString("SysConfig_RealTaobaoServerUrl", resourceCulture);
+            }
+        }
     }
 }

@@ -117,23 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Exception_NotFoundAuthorizedCode" xml:space="preserve">
-    <value>没有获取到认证Code</value>
-  </data>
-  <data name="SysConfig_AuthorizedCodeXPath" xml:space="preserve">
-    <value>/html/body/div[@class='content']/div[2]/div[@class='copy-code']/input</value>
-    <comment>用于该XPATH获取在淘宝认证界面的AuthorizedCode</comment>
-  </data>
-  <data name="ExceptionTemplate_MethedParameterIsNullorEmpty" xml:space="preserve">
-    <value>在 [{0}] 方法中传入参数 [{1}] 不能为空</value>
-    <comment>异常模版，方法接收的参数不合法</comment>
-  </data>
-  <data name="SysConfig_AuthorizeUrl" xml:space="preserve">
-    <value>http://open.taobao.com/authorize/?appkey={0}</value>
-    <comment>，需要传入appKey</comment>
-  </data>
-  <data name="SysConfig_RealTaobaoServerUrl" xml:space="preserve">
-    <value>http://gw.api.taobao.com/router/rest</value>
-    <comment>淘宝真实环境URL</comment>
-  </data>
 </root>
