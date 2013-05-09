@@ -29,7 +29,7 @@ namespace MyTools.TaoBao.Interface
         /// <summary>
         /// 获取商品所属的店铺类目列表
         /// </summary>
-        /// <param name="sellerCats">淘宝用户名</param>
+        /// <param name="sellerCats">卖家的类目列表</param>
         /// <param name="parentSellCatName">店铺的父组类目</param>
         /// <param name="childSellCatsNames">子类目列表</param>
         string GetSellerCids(List<SellerCat> sellerCats, string parentSellCatName, IEnumerable<string> childSellCatsNames);

@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTools.TaoBao.UnitTest", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopSdk", "..\GetTbData\GetTbData\ExternalResource\taobao-sdk-net-online_standard\taobao-sdk-net-online_standard-20130425-source\TopSdk.csproj", "{9C11CAE5-5188-4E71-825B-68FC3135728A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Crosscutting", "..\..\..\MyLibrary\Infrastructure.Crosscutting\Infrastructure.Crosscutting.csproj", "{106C7F00-C03F-4E29-87AF-ACD1BA292078}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{9C11CAE5-5188-4E71-825B-68FC3135728A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C11CAE5-5188-4E71-825B-68FC3135728A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C11CAE5-5188-4E71-825B-68FC3135728A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{106C7F00-C03F-4E29-87AF-ACD1BA292078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{106C7F00-C03F-4E29-87AF-ACD1BA292078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{106C7F00-C03F-4E29-87AF-ACD1BA292078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{106C7F00-C03F-4E29-87AF-ACD1BA292078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +99,6 @@ Global
 		{0A7006AF-066C-43E0-BB32-E17313EB6BB2} = {3A428E30-44D5-4ADA-809C-372099456743}
 		{8291F169-B677-4A41-8E2F-654690B38082} = {3A428E30-44D5-4ADA-809C-372099456743}
 		{9C11CAE5-5188-4E71-825B-68FC3135728A} = {A2AF189A-5647-4409-B931-D31C988FE1ED}
+		{106C7F00-C03F-4E29-87AF-ACD1BA292078} = {A2AF189A-5647-4409-B931-D31C988FE1ED}
 	EndGlobalSection
 EndGlobal

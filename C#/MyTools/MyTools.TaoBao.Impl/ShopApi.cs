@@ -50,6 +50,12 @@ namespace MyTools.TaoBao.Impl
             return responseCats.SellerCats;
         }
 
+        /// <summary>
+        /// 获取商品所属的店铺类目列表
+        /// </summary>
+        /// <param name="userNick">淘宝用户名</param>
+        /// <param name="parentSellCatName">店铺的父组类目</param>
+        /// <param name="childSellCatsNames">子类目列表</param>
         public string GetSellerCids(string userNick, string parentSellCatName, IEnumerable<string> childSellCatsNames)
         {
             List<SellerCat> sellerCats = GetSellercatsList(userNick);
@@ -57,6 +63,12 @@ namespace MyTools.TaoBao.Impl
             return GetSellerCids(sellerCats, parentSellCatName, childSellCatsNames);
         }
 
+        /// <summary>
+        /// 获取商品所属的店铺类目列表
+        /// </summary>
+        /// <param name="sellerCats">卖家的类目列表</param>
+        /// <param name="parentSellCatName">店铺的父组类目</param>
+        /// <param name="childSellCatsNames">子类目列表</param>
         public string GetSellerCids(List<SellerCat> sellerCats, string parentSellCatName,
                                     IEnumerable<string> childSellCatsNames)
         { 
