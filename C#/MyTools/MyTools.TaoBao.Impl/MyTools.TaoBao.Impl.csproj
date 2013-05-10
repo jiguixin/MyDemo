@@ -37,6 +37,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,12 +51,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization\DefaultAuthorization.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ItemCats.cs" />
+    <Compile Include="NinjectModuleConfig\AppModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopApi.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\MyLibrary\Infrastructure.Crosscutting\Infrastructure.Crosscutting.csproj">
+      <Project>{106C7F00-C03F-4E29-87AF-ACD1BA292078}</Project>
+      <Name>Infrastructure.Crosscutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GetTbData\GetTbData\ExternalResource\taobao-sdk-net-online_standard\taobao-sdk-net-online_standard-20130425-source\TopSdk.csproj">
       <Project>{9C11CAE5-5188-4E71-825B-68FC3135728A}</Project>
       <Name>TopSdk</Name>

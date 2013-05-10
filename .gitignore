@@ -168,3 +168,8 @@ pip-log.txt
 
 C#/MyTools/Assemblies*/
 /C#/MyTools/Assemblies
+
+/Output/
+/C#/MyTools/TestOutput/
+/TestResults/
+

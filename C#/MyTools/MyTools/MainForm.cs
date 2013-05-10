@@ -7,11 +7,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Infrastructure.Crosscutting.IoC;
+using Infrastructure.Crosscutting.Logging;
 using MyTools.TaoBao;
 using MyTools.TaoBao.Impl;
 using MyTools.TaoBao.Impl.Authorization;
+using MyTools.TaoBao.Impl.NinjectModuleConfig;
 using MyTools.TaoBao.Interface;
 using MyTools.TaoBao.Interface.Authorization;
+using Ninject;
 using Top.Api;
 using Top.Api.Util;
 using MyTools.TaoBao.DomainModule;
@@ -119,27 +123,30 @@ namespace MyTools
 
         #region var
 
-        //App Key与App Secret在"应用证书"得到
-        private ITopClient client;
+        //App Key与App Secret在"应用证书"得到 
+        private ITopClient client = InstanceLocator.Current.GetInstance<ITopClient>();
 
         private TopContext context;
 
-        private IShopApi shopApi;
+        private IShopApi shopApi = InstanceLocator.Current.GetInstance<IShopApi>();
 
         private string authorizeUrl;
+         
+        private IAuthorization auth = InstanceLocator.Current.GetInstance<IAuthorization>();
 
-        private string appKey = "21479233";
-
-        private string appSecret = "98dd6f00daf3f94322ec1a4ff72370b7";
-
+        ILogger log = InstanceLocator.Current.GetInstance<ILoggerFactory>().Create();
+           
         #endregion
 
         private void btnAuthorization_Click(object sender, EventArgs e)
         {
+            log.LogInfo("正在执行验证方法-{0}", "btnAuthorization_Click");
+
             FrmLogin login = new FrmLogin(authorizeUrl);
             if (login.ShowDialog() == DialogResult.OK)
             {
-                IAuthorization auth = new DefaultAuthorization();
+                log.LogInfo("数据获取完成，结果为：{0}",login.resultHtml); 
+
                 context = auth.Authorized(login.resultHtml);
             }
         }
@@ -147,20 +154,14 @@ namespace MyTools
         private void btnGetCats_Click(object sender, EventArgs e)
         {
             var sellCatsList = shopApi.GetSellercatsList(context.UserNick);
-
-            Debug.WriteLine(sellCatsList.Count);
+            log.LogInfo("数据获取完成，卖家自定列表个数：{0}", sellCatsList.Count); 
 
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        {
-            client = new DefaultTopClient(Resource.SysConfig_RealTaobaoServerUrl,appKey , appSecret);
-
-            authorizeUrl = string.Format(Resource.SysConfig_AuthorizeUrl, appKey);
-
-            shopApi = new ShopApi(client);
-
-           
+        { 
+            authorizeUrl = string.Format(Resource.SysConfig_AuthorizeUrl, SysConst.AppKey);
+              
         }
     }
 }
