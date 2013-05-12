@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Authorization\DefaultAuthorization.cs" />
     <Compile Include="GoodsApi.cs" />
+    <Compile Include="IBanggoMgt.cs" />
     <Compile Include="ItemCats.cs" />
     <Compile Include="NinjectModuleConfig\AppModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

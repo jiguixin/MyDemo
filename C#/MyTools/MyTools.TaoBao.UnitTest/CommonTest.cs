@@ -81,6 +81,7 @@ namespace MyTools.TaoBao.UnitTest
 
         public void Ta(string s)
         {
+            double d = 120.78;
 
         }
 
