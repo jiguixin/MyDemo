@@ -15,6 +15,7 @@ using MyTools.TaoBao.Interface;
 using MyTools.TaoBao.Interface.Authorization;
 using Ninject.Modules;
 using Top.Api;
+using Top.Api.Util;
 
 namespace MyTools.TaoBao.Impl.NinjectModuleConfig
 {
@@ -28,10 +29,13 @@ namespace MyTools.TaoBao.Impl.NinjectModuleConfig
             this.Bind<IShopApi>().To<ShopApi>().InSingletonScope();
             this.Bind<IItemCats>().To<ItemCats>().InSingletonScope();
             this.Bind<IAuthorization>().To<DefaultAuthorization>().InSingletonScope();
+
+            this.Bind<IGoodsApi>().To<GoodsApi>().InSingletonScope();
+
             this.Bind<ITopClient>().To<DefaultTopClient>().InSingletonScope().WithConstructorArgument("serverUrl", Resource.SysConfig_RealTaobaoServerUrl).WithConstructorArgument("appKey", SysConst.AppKey).WithConstructorArgument("appSecret", SysConst.AppSecret);
 
             this.Bind<ILoggerFactory>().ToMethod(x => new TraceSourceLogFactory()).InSingletonScope();
-
+              
         }
     }
 }

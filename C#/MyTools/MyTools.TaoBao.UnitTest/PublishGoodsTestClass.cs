@@ -8,7 +8,17 @@
  */
 
 using System;
+using System.Diagnostics;
+using Infrastructure.CrossCutting.IoC.Ninject;
+using Infrastructure.Crosscutting.IoC;
+using Infrastructure.Crosscutting.Utility;
+using MyTools.TaoBao.Impl;
+using MyTools.TaoBao.Interface;
 using NUnit.Framework;
+using Top.Api;
+using Top.Api.Domain;
+using Top.Api.Request;
+using Product = MyTools.TaoBao.DomainModule.Product;
 
 namespace MyTools.TaoBao.UnitTest
 {
@@ -37,6 +47,8 @@ namespace MyTools.TaoBao.UnitTest
         [SetUp]
         public void Initialize()
         {
+            InstanceLocator.SetLocator(
+              new NinjectContainer().WireDependenciesInAssemblies(typeof(ItemCats).Assembly.FullName).Locator);
         }
 
         /// <summary>
@@ -48,10 +60,37 @@ namespace MyTools.TaoBao.UnitTest
         }
 
         [Test]
-        public void PublishGoodsTest()
+        public void TestGetCid()
         {
-            
+            IItemCats client = InstanceLocator.Current.GetInstance<IItemCats>();
+
+            string parentCid = client.GetCid("T恤", "女装");
+            Console.WriteLine(parentCid);
+
+            string parentCid1 = client.GetCid("T恤", "女装");
+            Console.WriteLine(parentCid);
+
         }
 
+        [Test]
+        public void GetSellerCid()
+        {
+            string sellerCid = "T恤 - 短袖T恤";
+
+            IShopApi client = InstanceLocator.Current.GetInstance<IShopApi>();
+
+            string s = client.GetSellerCids("mbgou", "Metersbonwe - 女装", "T恤 - 短袖T恤", "T恤 - 长袖T恤");
+
+            Console.WriteLine(s);
+        }
+
+       
+
+
+        [Test]
+        public void PublishGoodsTest()
+        {
+
+        } 
     }
 }

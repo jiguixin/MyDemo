@@ -6,6 +6,7 @@
 //  Original author: 吉桂昕
 ///////////////////////////////////////////////////////////
 
+using System;
 using Top.Api.Util;
 
 namespace MyTools.TaoBao.DomainModule
@@ -22,9 +23,9 @@ namespace MyTools.TaoBao.DomainModule
     {
 
         /// <summary>
-        /// 类目API---- taobao.itemcats.get
+        ///叶子类目id  类目API---- taobao.itemcats.get
         /// </summary>
-        public long Cid { get; set; }
+        public Nullable<long> Cid { get; set; }
 
         /// <summary>
         /// 宝贝描述。字数要大于5个字符，小于25000个字符，受违禁词控制
@@ -39,9 +40,9 @@ namespace MyTools.TaoBao.DomainModule
         public string FreightPayer = "buyer";
 
         /// <summary>
-        /// 可选值:true,false;默认值:false(不推荐)
+        /// 橱窗推荐。可选值:true,false;默认值:false(不推荐)
         /// </summary>
-        public bool HasShowcase { get; set; }
+        public Nullable<bool> HasShowcase { get; set; }
 
         /// <summary>
         /// 商品主图片。类型:JPG,GIF;最大长度:500K
@@ -54,26 +55,39 @@ namespace MyTools.TaoBao.DomainModule
         /// </summary>
         public string InputPids { get; set; }
 
-        public int InputStr { get; set; }
+        /// <summary>
+        /// 用户自行输入的子属性名和属性值，结构:"父属性值;一级子属性名;一级子属性值;二级子属性名;自定义输入值,....",如：“耐克;耐克系列;科比系列;科比系列;2K5,Nike乔丹鞋;乔丹系列;乔丹鞋系列;乔丹鞋系列;json5”，多个自定义属性用','分割，input_str需要与input_pids一一对应，注：通常一个类目下用户可输入的关键属性不超过1个。所有属性别名加起来不能超过3999字节
+        /// </summary>
+        public string InputStr { get; set; }
+
+        /// <summary>
+        /// 所在地城市。如杭州 。可以通过http://dl.open.taobao.com/sdk/商品城市列表.rar查询
+        /// </summary>
         public string LocationCity { get; set; }
+        /// <summary>
+        /// 所在地省份。如浙江，具体可以下载http://dl.open.taobao.com/sdk/商品城市列表.rar  取到
+        /// </summary>
         public string LocationState { get; set; }
 
         /// <summary>
-        /// 商品数量，取值范围:0-999999的整数。且需要等于Sku所有数量的和。 拍卖商品中增加拍只能为1，荷兰拍要在[2,500)范围内。
+        /// 商品数量，取值范围:0-999999的整数。且需要等于Sku所有数量的和。  拍卖商品中增加拍只能为1，荷兰拍要在[2,500)范围内。
         /// </summary>
-        public int Num { get; set; }
+        public Nullable<long> Num { get; set; }
 
+        /// <summary>
+        /// 商品外部编码，该字段的最大长度是512个字节
+        /// </summary>
         public string OuterId { get; set; }
 
         /// <summary>
-        /// 取值范围：整数且必须是该卖家的运费模板的ID（可通过taobao.delivery.template.get获得当前会话用户的所有邮费模板）
+        /// 宝贝所属的运费模板ID。取值范围：整数且必须是该卖家的运费模板的ID（可通过taobao.delivery.template.get获得当前会话用户的所有邮费模板）
         /// </summary>
-        public int PostageId { get; set; }
+        public Nullable<long> PostageId { get; set; }
 
         /// <summary>
         /// 商品价格。取值范围:0-100000000;精确到2位小数;单位:元。如:200.07，表示:200元7分。需要在正确的价格区间内。 拍卖商品对应的起拍价。
         /// </summary>
-        public double Price { get; set; }
+        public string Price { get; set; }
 
         /// <summary>
         /// 如pid:vid:别名;pid1:vid1:别名1 ，其中：pid是属性id vid是属性值id。总长度不超过511字节
@@ -92,6 +106,9 @@ namespace MyTools.TaoBao.DomainModule
         /// </summary>
         public string SellerCids { get; set; }
 
+        /// <summary>
+        /// Sku的外部id串，结构如：1234,1342,…  sku_properties, sku_quantities, sku_prices, sku_outer_ids在输入数据时要一一对应，如果没有sku_outer_ids也要写上这个参数，入参是","(这个是两个sku的示列，逗号数应该是sku个数减1)；该参数最大长度是512个字节
+        /// </summary>
         public string SkuOuterIds { get; set; }
 
         /// <summary>

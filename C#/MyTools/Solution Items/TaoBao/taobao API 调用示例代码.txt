@@ -44,12 +44,14 @@ req.SellerCids = "714827842";
 req.PostFee = "10";
 req.ExpressFee = "10";
 req.EmsFee = "10";
+//设置其颜色大小别名
 req.PropertyAlias = "1627207:3232483:20色;20509:28314:155(S)";
 req.InputPids = "1632501";
+//前面是颜色，后面是大小 
 req.SkuProperties = "1627207:3232483;20509:28314";
 req.SkuQuantities = "10";
 req.SkuPrices = "200";
-req.PicPath = "i4/820330575/T2qamQXX0bXXXXXXXX_!!820330575.jpg_100x100.jpg"; //窗口的主图
+req.PicPath = "i4/820330575/T2qamQXX0bXXXXXXXX_!!820330575.jpg_100x100.jpg"; //商品的主图
 req.SkuOuterIds = "238287";// SKU 商家编码
 req.OuterId = "238287";  //商家编码
 req.InputStr = "238287";
@@ -68,7 +70,10 @@ ItemPropimgUploadResponse response = client.Execute(req, sessionKey);
 
 //-------------------------------------------------------------------------------
 // 物流API taobao.delivery.templates.get 获取用户下所有模板
-
+ITopClient client = new DefaultTopClient(url, appkey, appsecret);
+DeliveryTemplatesGetRequest req=new DeliveryTemplatesGetRequest();
+req.Fields = "template_id";
+DeliveryTemplatesGetResponse response = client.Execute(req, sessionKey);
 
 
 //-------------------------------------------------------------------------------

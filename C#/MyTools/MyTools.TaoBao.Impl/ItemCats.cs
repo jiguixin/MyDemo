@@ -6,7 +6,16 @@
 //  Original author: 吉桂昕
 ///////////////////////////////////////////////////////////
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using Infrastructure.Crosscutting.IoC;
+using MyTools.TaoBao.DomainModule;
 using MyTools.TaoBao.Interface;
+using Top.Api;
+using Top.Api.Domain;
+using Top.Api.Request;
+using Top.Api.Response;
 
 namespace MyTools.TaoBao.Impl
 {
@@ -15,23 +24,64 @@ namespace MyTools.TaoBao.Impl
     /// </summary>
     public class ItemCats : IItemCats
     {
+        ITopClient client = InstanceLocator.Current.GetInstance<ITopClient>();
+
+        //根据淘宝的父类目和子类目->获取后台供卖家发布商品的标准商品类目id
         /// <summary>
-        ///     根据店铺的父类目和子类目->获取后台供卖家发布商品的标准商品类目id
+        /// 根据淘宝的父类目和子类目->获取后台供卖家发布商品的标准商品类目id
         /// </summary>
-        /// <param name="childCatalog">子类目</param>
         /// <param name="parentCatalog">父类目</param>
-        public string GetCid(string childCatalog, string parentCatalog)
+        /// <param name="childCatalog">子类目</param>        
+        public string GetCid(string parentCatalog,string childCatalog)
         {
-            return "";
+            var parentItemCat = GetAllItemCatByApi(0).Find(c => c.Name.Contains(parentCatalog));
+
+            if (parentItemCat == null)
+            {
+                throw new Exception(string.Format(Resource.ExceptionTemplate_MethedParameterIsNullorEmpty, new System.Diagnostics.StackTrace().ToString()));
+            }
+
+            var childItemCat = GetAllItemCatByApi(parentItemCat.Cid).Find(c => c.Name.Contains(childCatalog));
+
+            if (childItemCat == null)
+                throw new Exception(string.Format(Resource.ExceptionTemplate_MethedParameterIsNullorEmpty,new System.Diagnostics.StackTrace().ToString()));
+
+            return childItemCat.Cid.ToString(CultureInfo.InvariantCulture);
         }
 
+        //得到淘宝的所有商品类目
         /// <summary>
-        ///     通过Cid得到相应的props
+        /// 得到淘宝的所有商品类目
+        /// </summary>
+        /// <returns></returns>
+        public List<ItemCat> GetAllItemCatByApi(long parentCid)
+        {  
+            ItemcatsGetRequest req = new ItemcatsGetRequest();
+            req.Fields = "cid,parent_cid,name,is_parent";
+            req.ParentCid = parentCid;
+            ItemcatsGetResponse response = client.Execute(req);
+
+            return response.ItemCats; 
+        }
+
+        //类目API taobao.itemprops.get 获取标准商品类目属性（包括：货号、品牌、衣长等）
+        /// <summary>
+        /// 类目API taobao.itemprops.get 获取标准商品类目属性（包括：货号、品牌、衣长等）
+        /// 注：1，货号，是放在input_str，input_pids 中，如：【（input_pids：input_str）
+        /// （1632501：238286）】
+        /// 2，品牌，如果淘宝类目中有该品牌如：那么就加到props中，如果没有，需要自定义品牌者加到
+        /// input_str，input_pids，如：【（input_pids：input_str）（20000：莱克）】
+        /// 3,SUK（销售）属性，sku_properties中有的属性props也必须存在。
+        /// sku_properties中以，分开。
         /// </summary>
         /// <param name="cid">淘宝所属类目ID</param>
-        public string GetPropsByCid(string cid)
+        public List<ItemProp> GetPropsByCid(long cid)
         {
-            return "";
+            ItempropsGetRequest req = new ItempropsGetRequest();
+            req.Fields = "pid,name,must,multi,prop_values";
+            req.Cid = cid;
+            ItempropsGetResponse response = client.Execute(req);
+            return response.ItemProps; 
         }
 
         ~ItemCats()
@@ -41,6 +91,8 @@ namespace MyTools.TaoBao.Impl
         public virtual void Dispose()
         {
         }
+
+
     }
 }
 

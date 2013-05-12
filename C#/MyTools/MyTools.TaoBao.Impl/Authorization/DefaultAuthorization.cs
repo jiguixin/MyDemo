@@ -26,7 +26,7 @@ namespace MyTools.TaoBao.Impl.Authorization
         public TopContext Authorized(string authHtml)
         {
             if (string.IsNullOrWhiteSpace(authHtml))
-                throw new Exception(string.Format(Resource.ExceptionTemplate_MethedParameterIsNullorEmpty,"DefaultAuthorization->Authorized","authHtml"));
+                throw new Exception(string.Format(Resource.ExceptionTemplate_MethedParameterIsNullorEmpty, new System.Diagnostics.StackTrace().ToString()));
 
             HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(authHtml);

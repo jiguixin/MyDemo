@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization\IAuthorization.cs" />
+    <Compile Include="IGoodsApi.cs" />
     <Compile Include="IItemCats.cs" />
     <Compile Include="IShopApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -48,6 +49,10 @@
     <ProjectReference Include="..\..\GetTbData\GetTbData\ExternalResource\taobao-sdk-net-online_standard\taobao-sdk-net-online_standard-20130425-source\TopSdk.csproj">
       <Project>{9C11CAE5-5188-4E71-825B-68FC3135728A}</Project>
       <Name>TopSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyTools.TaoBao.DomainModule\MyTools.TaoBao.DomainModule.csproj">
+      <Project>{cfda5730-0420-430f-bf57-312b716afa17}</Project>
+      <Name>MyTools.TaoBao.DomainModule</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
