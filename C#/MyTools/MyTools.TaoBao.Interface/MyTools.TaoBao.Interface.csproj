@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization\IAuthorization.cs" />
+    <Compile Include="IBanggoMgt.cs" />
     <Compile Include="IGoodsApi.cs" />
     <Compile Include="IItemCats.cs" />
     <Compile Include="IShopApi.cs" />

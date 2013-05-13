@@ -13,6 +13,7 @@ using Infrastructure.CrossCutting.IoC.Ninject;
 using Infrastructure.Crosscutting.IoC;
 using Infrastructure.Crosscutting.Utility;
 using Infrastructure.Crosscutting.Utility.CommomHelper;
+using MyTools.TaoBao.DomainModule;
 using MyTools.TaoBao.Impl;
 using MyTools.TaoBao.Interface;
 using NUnit.Framework;
@@ -130,6 +131,51 @@ namespace MyTools.TaoBao.UnitTest
             
             var response = restClient.Execute(request);
             Console.WriteLine(response.Content);
+
+        }
+
+
+        [Test]
+        public void GetBanggoDataByRest1()
+        {
+          string url =  string.Format(
+                "http://act.banggo.com/Ajax/cartAjax?time={0}&ajaxtype=color_size&type=size&code={1}&r_code={2}&goods_sn={3}",
+                DateTime.Now.Ticks, 23852, 91, 238395);
+          var restClient = new RestClient(url);
+            var request = new RestRequest(Method.GET);
+            
+
+            request.AddHeader("Host", "act.banggo.com");
+            //request.AddHeader("Connection", "keep-alive");
+            request.AddHeader("Accept", "*/*");
+            request.AddHeader("User-Agent",
+                   "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31");
+            request.AddHeader("Referer", "http://metersbonwe.banggo.com/Goods/238395.shtml");
+            request.AddHeader("Accept-Encoding", "gzip,deflate,sdch");
+            request.AddHeader("Accept-Language", "zh-CN,zh;q=0.8");
+            request.AddHeader("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
+            //request.AddCookie("Cookie",
+            //       "stati_client_mark_code=1364310301869; PHPSESSID=fb3bc93284e0c7213c6711f91a38c60a; bg_uid=33a7f71a44e72aa2efad64724317ce56; bg_user_ip=8%7C118.113.147.218%7C%E5%9B%9B%E5%B7%9D%7C0%7C%E6%88%90%E9%83%BD%7C101270101%7C%E6%88%90%E9%83%BD%7C101270101; banggo_think_language=zh-CN; bg_time=1368356787; __utma=4343212.1532128941.1364310301.1368256305.1368351505.11; __utmb=4343212.11.10.1368351505; __utmc=4343212; __utmz=4343212.1368351505.11.3.utmcsr=search.banggo.com|utmccn=(referral)|utmcmd=referral|utmcct=/Search/a_22_a_a_a_a_a_a_a_a_a_a_a_a.shtml; NSC_58.215.174.167*80=ffffffff0958156645525d5f4f58455e445a4a423660");
+
+            var response = restClient.Execute(request);
+            Console.WriteLine(response.Content);
+
+        }
+
+        [Test]
+        public void BanggoMgt_GetGoodsInfo()
+        {
+            IBanggoMgt mgt = InstanceLocator.Current.GetInstance<IBanggoMgt>();
+
+            var brm = new BanggoRequestModel();
+            brm.Referer = "http://metersbonwe.banggo.com/Goods/238395.shtml";
+            brm.SizeCode = "23852";
+            brm.ColorCode = "91";
+            brm.GoodsSn = "238395";
+             
+            var goodsModel = mgt.GetGoodsInfo(brm);
+            Console.WriteLine(goodsModel.MarketPrice);
+
 
         }
 

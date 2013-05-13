@@ -74,6 +74,20 @@ namespace MyTools.TaoBao.UnitTest
             Console.WriteLine(req.Num);
         }
 
+        [Test]
+        public void TimeTest()
+        {
+
+            Console.WriteLine(DateTime.Now.Ticks);
+
+        }
+
+        [Test]
+        public void TestJson()
+        {
+             
+        }
+
         #endregion
 
 

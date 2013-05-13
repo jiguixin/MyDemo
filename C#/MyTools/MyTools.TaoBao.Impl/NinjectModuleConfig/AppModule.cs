@@ -35,6 +35,8 @@ namespace MyTools.TaoBao.Impl.NinjectModuleConfig
             this.Bind<ITopClient>().To<DefaultTopClient>().InSingletonScope().WithConstructorArgument("serverUrl", Resource.SysConfig_RealTaobaoServerUrl).WithConstructorArgument("appKey", SysConst.AppKey).WithConstructorArgument("appSecret", SysConst.AppSecret);
 
             this.Bind<ILoggerFactory>().ToMethod(x => new TraceSourceLogFactory()).InSingletonScope();
+
+            this.Bind<IBanggoMgt>().To<BanggoMgt>().InSingletonScope();
               
         }
     }
